@@ -10,7 +10,7 @@ const GameRoom = () => {
   const [isGameOver, setIsGameOver] = useState(false);
   const [isCleared, setIsCleared] = useState(false); // Added for clear state
   const [inputValue, setInputValue] = useState('');
-  
+
   // New state for category selection
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [gameStarted, setGameStarted] = useState(false);
@@ -27,7 +27,7 @@ const GameRoom = () => {
     });
     setCategories(folderList);
   }, []);
-  
+
   const activeWordsRef = useRef([]);
   const scoreRef = useRef(0);
   const livesRef = useRef(5);
@@ -54,7 +54,7 @@ const GameRoom = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-    
+
     const rect = canvas.getBoundingClientRect();
     const dpr = window.devicePixelRatio || 1;
     canvas.width = rect.width * dpr;
@@ -67,13 +67,13 @@ const GameRoom = () => {
     let spawnTimer = 0;
     let baseSpeed = 1;
 
-    const currentWordList = selectedCategory === 'all' 
-      ? getAllWords() 
+    const currentWordList = selectedCategory === 'all'
+      ? getAllWords()
       : getWordsByFolderId(selectedCategory);
 
     const getRandomWord = () => {
       if (remainingWordsRef.current.length === 0) return null;
-      
+
       const randomIndex = Math.floor(Math.random() * remainingWordsRef.current.length);
       const word = remainingWordsRef.current.splice(randomIndex, 1)[0];
 
@@ -175,7 +175,7 @@ const GameRoom = () => {
 
       for (let i = activeWordsRef.current.length - 1; i >= 0; i--) {
         const wordObj = activeWordsRef.current[i];
-        
+
         wordObj.y += wordObj.speed;
 
         if (wordObj.y > gameHeight) {
@@ -189,22 +189,22 @@ const GameRoom = () => {
         ctx.font = 'bold 16px Inter, Pretendard, sans-serif';
         const textMetrics = ctx.measureText(wordObj.en);
         const blockWidth = textMetrics.width + 28;
-        const blockHeight = 38; 
-        
+        const blockHeight = 38;
+
         ctx.shadowColor = 'rgba(0, 0, 0, 0.08)';
         ctx.shadowBlur = 8;
         ctx.shadowOffsetY = 4;
 
         ctx.beginPath();
-        ctx.roundRect(wordObj.x - blockWidth/2, wordObj.y - blockHeight/2, blockWidth, blockHeight, 16);
+        ctx.roundRect(wordObj.x - blockWidth / 2, wordObj.y - blockHeight / 2, blockWidth, blockHeight, 16);
         ctx.fill();
 
         ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
         ctx.lineWidth = 1;
         ctx.stroke();
-        
+
         ctx.shadowColor = 'transparent';
-        
+
         ctx.fillStyle = '#1e293b';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
@@ -259,10 +259,10 @@ const GameRoom = () => {
     isGameOverRef.current = false;
     isClearedRef.current = false;
     fireworksRef.current = [];
-    
+
     // Initialize remaining words pool for this game
-    const wordList = selectedCategory === 'all' 
-      ? getAllWords() 
+    const wordList = selectedCategory === 'all'
+      ? getAllWords()
       : getWordsByFolderId(selectedCategory);
     remainingWordsRef.current = [...wordList];
 
@@ -280,7 +280,7 @@ const GameRoom = () => {
   return (
     <div className="page-container game-page">
       <Header title="게임룸" showBack={true} />
-      
+
       {!gameStarted ? (
         <div className="start-screen glass-panel">
           <h2>학습할 카테고리를 선택하세요</h2>
@@ -328,10 +328,10 @@ const GameRoom = () => {
 
           <div className="input-container glass-panel">
             <form onSubmit={handleInputSubmit}>
-              <input 
-                type="text" 
-                className="word-input" 
-                placeholder="단어의 뜻을 입력하세요..." 
+              <input
+                type="text"
+                className="word-input"
+                placeholder="단어의 뜻을 입력하세요..."
                 value={inputValue}
                 onChange={handleInputChange}
                 disabled={isGameOver}

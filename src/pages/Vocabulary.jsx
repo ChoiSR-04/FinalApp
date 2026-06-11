@@ -38,7 +38,7 @@ const Vocabulary = () => {
     setModalMode('edit');
     setEditingFolderId(folder.id);
     setVocabName(folder.name);
-    
+
     const existingWords = getWordsByFolderId(folder.id);
     setWordsList(existingWords.length > 0 ? existingWords : [{ en: '', ko: '' }]);
     setIsModalOpen(true);
@@ -90,7 +90,7 @@ const Vocabulary = () => {
 
   // Filter categories and folders based on search term
   const filteredCategories = categories.map(cat => {
-    const matchedFolders = cat.folders.filter(folder => 
+    const matchedFolders = cat.folders.filter(folder =>
       folder.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
     return {
@@ -101,42 +101,42 @@ const Vocabulary = () => {
 
   return (
     <div className="page-container vocab-page">
-      <Header 
-        title="나의 단어장" 
-        showBack={true} 
-        rightIcon="add" 
-        onRightIconClick={handleOpenCreateModal} 
+      <Header
+        title="나의 단어장"
+        showBack={true}
+        rightIcon="add"
+        onRightIconClick={handleOpenCreateModal}
       />
-      
+
       <div className="search-bar glass-panel">
         <Search size={20} className="search-icon" />
-        <input 
-          type="text" 
-          placeholder="검색: 단어장 이름을 입력하세요" 
+        <input
+          type="text"
+          placeholder="검색: 단어장 이름을 입력하세요"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="search-input"
         />
       </div>
 
-      <div className="category-list">
+      <div className="category-list1">
         {filteredCategories.map((cat, idx) => (
           <div key={idx} className="category-section">
             <h3 className="category-title">
-              <Folder size={18} className="folder-icon" fill="#fbbf24" stroke="#fbbf24" /> 
+              <Folder size={18} className="folder-icon" fill="#fbbf24" stroke="#fbbf24" />
               {cat.title}
             </h3>
-            
+
             <div className="folder-list">
               {cat.folders.map(folder => (
-                <div 
-                  key={folder.id} 
-                  className="folder-card glass-panel" 
+                <div
+                  key={folder.id}
+                  className="folder-card glass-panel"
                   onClick={() => navigate(`/flashcard/${folder.id}`)}
                 >
                   <div className="folder-icon-wrapper">
-                    {folder.icon === 'book' ? 
-                      <Book size={24} color="#3b82f6" fill="#bfdbfe" /> : 
+                    {folder.icon === 'book' ?
+                      <Book size={24} color="#3b82f6" fill="#bfdbfe" /> :
                       <Star size={24} color="#f59e0b" fill="#fef3c7" />}
                   </div>
                   <div className="folder-info">
@@ -147,19 +147,19 @@ const Vocabulary = () => {
                       <div className="progress-text">(단어 수: {folder.count}개)</div>
                     )}
                   </div>
-                  
+
                   {/* Custom Vocab actions */}
                   {folder.isCustom && (
                     <div className="folder-actions">
-                      <button 
-                        className="action-icon-btn edit-btn" 
+                      <button
+                        className="action-icon-btn edit-btn"
                         onClick={(e) => handleOpenEditModal(e, folder)}
                         title="단어장 수정"
                       >
                         <Edit size={16} />
                       </button>
-                      <button 
-                        className="action-icon-btn delete-btn" 
+                      <button
+                        className="action-icon-btn delete-btn"
                         onClick={(e) => handleDeleteFolder(e, folder.id, folder.name)}
                         title="단어장 삭제"
                       >
@@ -189,14 +189,14 @@ const Vocabulary = () => {
                 <X size={20} />
               </button>
             </div>
-            
+
             <div className="modal-body">
               <div className="form-group">
                 <label htmlFor="vocab-name">단어장 이름</label>
-                <input 
-                  type="text" 
-                  id="vocab-name" 
-                  placeholder="예: 전공 필수 어휘 모음" 
+                <input
+                  type="text"
+                  id="vocab-name"
+                  placeholder="예: 전공 필수 어휘 모음"
                   value={vocabName}
                   onChange={(e) => setVocabName(e.target.value)}
                   className="modal-input"
@@ -210,26 +210,26 @@ const Vocabulary = () => {
                     <Plus size={14} /> 행 추가
                   </button>
                 </div>
-                
+
                 <div className="word-rows-container">
                   {wordsList.map((word, index) => (
                     <div key={index} className="word-input-row">
-                      <input 
-                        type="text" 
-                        placeholder="영어 단어 (예: Concept)" 
+                      <input
+                        type="text"
+                        placeholder="영어 단어 (예: Concept)"
                         value={word.en}
                         onChange={(e) => handleWordChange(index, 'en', e.target.value)}
                         className="modal-input word-en-input"
                       />
-                      <input 
-                        type="text" 
-                        placeholder="한글 뜻 (예: 개념)" 
+                      <input
+                        type="text"
+                        placeholder="한글 뜻 (예: 개념)"
                         value={word.ko}
                         onChange={(e) => handleWordChange(index, 'ko', e.target.value)}
                         className="modal-input word-ko-input"
                       />
-                      <button 
-                        className="btn-delete-row" 
+                      <button
+                        className="btn-delete-row"
                         onClick={() => handleRemoveWordRow(index)}
                         title="이 행 삭제"
                       >
