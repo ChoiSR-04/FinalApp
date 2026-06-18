@@ -5,6 +5,16 @@ import { Book, Star } from 'lucide-react';
 import { getUserStats, getRecentFolders } from '../utils/vocabDb';
 import './MyPage.css';
 
+const weeklyData = [
+  { day: 'Mon', minutes: 28 },
+  { day: 'Tue', minutes: 15 },
+  { day: 'Wed', minutes: 22 },
+  { day: 'Thu', minutes: 30 },
+  { day: 'Fri', minutes: 12 },
+  { day: 'Sat', minutes: 18 },
+  { day: 'Sun', minutes: 10 },
+];
+
 const MyPage = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [userInfo, setUserInfo] = useState({
@@ -142,24 +152,16 @@ const MyPage = () => {
       </div>
 
       <div className="stats-card glass-panel">
-        <h3 className="section-title">학습기록</h3>
-        <ul className="stats-list">
-          <li>총 학습 단어 수: 1450개</li>
-          <li>총 퀴즈 참여 수: 45회</li>
-          <li>최고 연속 학습 일수: 15일</li>
-        </ul>
-      </div>
-
-      <div className="stats-card glass-panel">
         <h3 className="section-title">주간 학습 추이</h3>
         <div className="bar-chart">
-          {/* Simple CSS bar chart */}
-          <div className="bar-container"><div className="bar" style={{height: '90%'}}></div><span className="day">Mon</span></div>
-          <div className="bar-container"><div className="bar" style={{height: '60%'}}></div><span className="day">Tue</span></div>
-          <div className="bar-container"><div className="bar" style={{height: '60%'}}></div><span className="day">Wed</span></div>
-          <div className="bar-container"><div className="bar" style={{height: '60%'}}></div><span className="day">Thu</span></div>
-          <div className="bar-container"><div className="bar" style={{height: '20%'}}></div><span className="day">Fri</span></div>
-          <div className="bar-container"><div className="bar" style={{height: '10%'}}></div><span className="day">Sat</span></div>
+          {weeklyData.map((item) => (
+            <div key={item.day} className="bar-container">
+              <div className="bar" style={{height: `${(item.minutes / 30) * 100}%`}}>
+                <span className="bar-tooltip">{item.minutes}분</span>
+              </div>
+              <span className="day">{item.day}</span>
+            </div>
+          ))}
         </div>
       </div>
     </div>

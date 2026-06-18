@@ -8,24 +8,23 @@ const RECENT_FOLDERS_KEY = 'vocab_recent_folders';
 
 const defaultCategories = [
   {
-    title: '1. 공대 기초 영단어 모음집',
+    title: '1. 공대 기초 영단어',
     folders: [
-      { id: 1, name: '공학 수학 필수 어휘', icon: 'book' },
-      { id: 2, name: '물리학/실험 기본 용어', icon: 'book' }
+      { id: 1, name: '미적분학 필수 어휘', icon: 'book' },
+      { id: 2, name: '일반물리학 필수 어휘', icon: 'book' }
     ]
   },
   {
-    title: '2. 전공 수업별 영단어 모음집',
+    title: '2. 전공 수업별 영단어',
     folders: [
-      { id: 3, name: '회로이론 및 실험', icon: 'book' },
-      { id: 4, name: '신호 및 시스템', icon: 'book' }
+      { id: 3, name: '회로이론', icon: 'book' },
+      { id: 4, name: '전자기학', icon: 'book' }
     ]
   },
   {
-    title: '3. 스스로 만드는 단어장 (커스텀)',
+    title: '3. 스스로 만드는 단어장',
     folders: [
-      { id: 5, name: '중간고사 오답 노트', count: initialWordsData[5] ? initialWordsData[5].length : 0, icon: 'star', isCustom: true },
-      { id: 6, name: '대학원 논문 독해용', count: initialWordsData[6] ? initialWordsData[6].length : 0, icon: 'star', isCustom: true }
+      { id: 5, name: '중간고사 오답 노트', count: initialWordsData[5] ? initialWordsData[5].length : 0, icon: 'star', isCustom: true }
     ]
   }
 ];
@@ -33,9 +32,40 @@ const defaultCategories = [
 export const initVocabDb = () => {
   if (!localStorage.getItem(CATEGORIES_KEY)) {
     localStorage.setItem(CATEGORIES_KEY, JSON.stringify(defaultCategories));
+  } else {
+    // Sync folder names & category titles from defaults into localStorage
+    const categories = JSON.parse(localStorage.getItem(CATEGORIES_KEY));
+    
+    // Remove folder 6 (대학원 논문 독해용) completely if it exists in cache
+    categories.forEach(cat => {
+      const idx = cat.folders.findIndex(f => Number(f.id) === 6);
+      if (idx !== -1) cat.folders.splice(idx, 1);
+    });
+
+    defaultCategories.forEach((defCat, catIdx) => {
+      if (categories[catIdx]) {
+        categories[catIdx].title = defCat.title;
+        defCat.folders.forEach(defFolder => {
+          const existing = categories[catIdx].folders.find(f => f.id === defFolder.id);
+          if (existing) {
+            existing.name = defFolder.name;
+          }
+        });
+      }
+    });
+    localStorage.setItem(CATEGORIES_KEY, JSON.stringify(categories));
   }
   if (!localStorage.getItem(WORDS_KEY)) {
     localStorage.setItem(WORDS_KEY, JSON.stringify(initialWordsData));
+  } else {
+    // Sync default words (folders 1-4) from initialWordsData
+    const wordsMap = JSON.parse(localStorage.getItem(WORDS_KEY));
+    [1, 2, 3, 4].forEach(id => {
+      if (initialWordsData[id]) {
+        wordsMap[id] = initialWordsData[id];
+      }
+    });
+    localStorage.setItem(WORDS_KEY, JSON.stringify(wordsMap));
   }
   if (!localStorage.getItem(PROGRESS_KEY)) {
     localStorage.setItem(PROGRESS_KEY, JSON.stringify({}));
@@ -194,7 +224,7 @@ export const saveVocabulary = (folderId, name, words) => {
     } else {
       // Fallback
       categories.push({
-        title: '3. 스스로 만드는 단어장 (커스텀)',
+        title: '3. 스스로 만드는 단어장',
         folders: [newFolder]
       });
     }

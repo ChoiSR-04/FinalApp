@@ -1,22 +1,32 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { addPoints } from '../utils/vocabDb';
 import Header from '../components/Header';
 import './Quiz.css';
 
 const Quiz = () => {
   const navigate = useNavigate();
-  const [timeLeft, setTimeLeft] = useState(80); // 1:20 in seconds
+  const [timeLeft, setTimeLeft] = useState(15);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [isFinished, setIsFinished] = useState(false);
   const [feedbackStatus, setFeedbackStatus] = useState(null);
+  const [isTimeoutReview, setIsTimeoutReview] = useState(false);
+
+  const finishQuiz = () => {
+    addPoints(50);
+    setIsFinished(true);
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setTimeLeft(prev => (prev > 0 ? prev - 1 : 0));
+      setTimeLeft(prev => {
+        if (isFinished || feedbackStatus !== null || isTimeoutReview) return prev;
+        return prev > 0 ? prev - 1 : 0;
+      });
     }, 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [isFinished, feedbackStatus, isTimeoutReview]);
 
   const formatTime = (seconds) => {
     const m = Math.floor(seconds / 60);
@@ -78,7 +88,31 @@ const Quiz = () => {
 
   const currentQuestion = questions[currentQuestionIndex];
 
+  useEffect(() => {
+    if (timeLeft === 0 && feedbackStatus === null && !isFinished && !isTimeoutReview) {
+      setSelectedOption(currentQuestion.correctId);
+      setFeedbackStatus('timeout');
+      
+      setTimeout(() => {
+        setFeedbackStatus(null);
+        setIsTimeoutReview(true);
+      }, 1500);
+    }
+  }, [timeLeft, feedbackStatus, isFinished, isTimeoutReview, currentQuestionIndex, currentQuestion.correctId, questions.length]);
+
   const handleNext = () => {
+    if (isTimeoutReview) {
+      setIsTimeoutReview(false);
+      if (currentQuestionIndex < questions.length - 1) {
+        setCurrentQuestionIndex(prev => prev + 1);
+        setSelectedOption(null);
+        setTimeLeft(15);
+      } else {
+        finishQuiz();
+      }
+      return;
+    }
+
     if (selectedOption !== null && feedbackStatus === null) {
       const isCorrect = selectedOption === currentQuestion.correctId;
       
@@ -89,8 +123,9 @@ const Quiz = () => {
           if (currentQuestionIndex < questions.length - 1) {
             setCurrentQuestionIndex(prev => prev + 1);
             setSelectedOption(null);
+            setTimeLeft(15);
           } else {
-            setIsFinished(true);
+            finishQuiz();
           }
         }, 1200);
       } else {
@@ -143,7 +178,9 @@ const Quiz = () => {
             <div 
               key={opt.id} 
               className={`option-item ${selectedOption === opt.id ? 'selected' : ''}`}
-              onClick={() => setSelectedOption(opt.id)}
+              onClick={() => {
+                if (!isTimeoutReview) setSelectedOption(opt.id);
+              }}
             >
               <div className="radio-circle">
                 {selectedOption === opt.id && <div className="radio-inner"></div>}
@@ -157,18 +194,18 @@ const Quiz = () => {
           className="btn-primary" 
           style={{ width: '100%', marginTop: '24px', padding: '14px', fontSize: '1rem' }}
           onClick={handleNext}
-          disabled={selectedOption === null || feedbackStatus !== null}
+          disabled={(selectedOption === null || feedbackStatus !== null) && !isTimeoutReview}
         >
-          {currentQuestionIndex < questions.length - 1 ? '선택' : '선택 (완료)'}
+          {isTimeoutReview ? '다음' : (currentQuestionIndex < questions.length - 1 ? '선택' : '선택 (완료)')}
         </button>
 
         {feedbackStatus && (
-          <div className={`feedback-overlay feedback-${feedbackStatus}`}>
+          <div className={`feedback-overlay feedback-${feedbackStatus === 'timeout' ? 'incorrect' : feedbackStatus}`}>
             <div className="feedback-icon">
               {feedbackStatus === 'correct' ? '⭕' : '❌'}
             </div>
             <div className="feedback-text">
-              {feedbackStatus === 'correct' ? '정답!' : '오답!'}
+              {feedbackStatus === 'correct' ? '정답!' : (feedbackStatus === 'timeout' ? '시간 초과!' : '오답!')}
             </div>
           </div>
         )}

@@ -26,11 +26,11 @@ const Home = () => {
         <h2 className="section-title">오늘의 챌린지</h2>
         <div className="challenge-card glass-panel">
           <div className="challenge-content">
-            <p className="challenge-subtitle">오늘의 챌린지 잡공!</p>
-            <h3 className="challenge-title">매운맛 퀴즈</h3>
-            <p className="challenge-desc">매운맛 퀴즈를 시작하세요!</p>
+            <p className="challenge-subtitle">오늘의 챌린지 도전!</p>
+            <h3 className="challenge-title">시험장 시뮬레이션</h3>
+            <p className="challenge-desc">기출 문제 속에서 단어를 만나보세요!</p>
             <button className="btn-primary mt-4" onClick={() => navigate('/quiz')}>
-              매운맛 퀴즈
+              바로 가기
             </button>
           </div>
           <div className="challenge-icon">

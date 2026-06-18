@@ -1,20 +1,20 @@
-// 1: 공학 수학 필수 어휘, 2: 물리학/실험 기본 용어, 3: 회로이론 및 실험, 4: 신호 및 시스템, 5: 중간고사 오답 노트, 6: 대학원 논문 독해용
+// 1: 미적분학 필수 어휘, 2: 일반물리학 필수 어휘, 3: 회로이론, 4: 전자기학, 5: 중간고사 오답 노트
 
 export const wordsData = {
   1: [
-    { en: 'Equation', ko: '방정식' }, { en: 'Variable', ko: '변수' }, { en: 'Constant', ko: '상수' }, { en: 'Coefficient', ko: '계수' },
-    { en: 'Derivative', ko: '도함수/미분' }, { en: 'Integral', ko: '적분' }, { en: 'Matrix', ko: '행렬' }, { en: 'Vector', ko: '벡터' },
-    { en: 'Determinant', ko: '행렬식' }, { en: 'Eigenvalue', ko: '고유값' }, { en: 'Eigenvector', ko: '고유벡터' }, { en: 'Function', ko: '함수' },
-    { en: 'Limit', ko: '극한' }, { en: 'Continuity', ko: '연속성' }, { en: 'Theorem', ko: '정리' }, { en: 'Proof', ko: '증명' },
-    { en: 'Probability', ko: '확률' }, { en: 'Statistics', ko: '통계학' }, { en: 'Distribution', ko: '분포' }, { en: 'Variance', ko: '분산' },
-    { en: 'Standard Deviation', ko: '표준편차' }, { en: 'Correlation', ko: '상관관계' }, { en: 'Hypothesis', ko: '가설' }, { en: 'Geometry', ko: '기하학' },
-    { en: 'Coordinate', ko: '좌표' }, { en: 'Axis', ko: '축' }, { en: 'Origin', ko: '원점' }, { en: 'Curve', ko: '곡선' },
-    { en: 'Tangent', ko: '접선' }, { en: 'Slope', ko: '기울기' }, { en: 'Area', ko: '넓이' }, { en: 'Volume', ko: '부피' },
-    { en: 'Radius', ko: '반지름' }, { en: 'Diameter', ko: '지름' }, { en: 'Angle', ko: '각도' }, { en: 'Degree', ko: '도 (각도)' },
-    { en: 'Radian', ko: '라디안' }, { en: 'Sine', ko: '사인' }, { en: 'Cosine', ko: '코사인' }, { en: 'Tangent (Trig)', ko: '탄젠트' },
-    { en: 'Logarithm', ko: '로그' }, { en: 'Exponential', ko: '지수의' }, { en: 'Polynomial', ko: '다항식' }, { en: 'Sequence', ko: '수열' },
-    { en: 'Series', ko: '급수' }, { en: 'Convergence', ko: '수렴' }, { en: 'Divergence', ko: '발산' }, { en: 'Transformation', ko: '변환' },
-    { en: 'Linear', ko: '선형의' }, { en: 'Nonlinear', ko: '비선형의' }
+    { en: 'hemisphere', ko: '반구' }, { en: 'radius', ko: '반지름' }, { en: 'diameter', ko: '지름' }, { en: 'circumference', ko: '원주' },
+    { en: 'perimeter', ko: '둘레' }, { en: 'surface area', ko: '표면적' }, { en: 'normal line', ko: '법선' }, { en: 'tangent line', ko: '접선' },
+    { en: 'first quadrant', ko: '제1사분면' }, { en: 'parallel', ko: '평행의' }, { en: 'horizontal', ko: '수평의' }, { en: 'vertical', ko: '수직의' },
+    { en: 'perpendicular', ko: '수직의' }, { en: 'orthogonal', ko: '직교의' }, { en: 'parabola', ko: '포물선' }, { en: 'ellipse', ko: '타원' },
+    { en: 'hyperbola', ko: '쌍곡선' }, { en: 'arbitrary', ko: '임의의' }, { en: 'volume', ko: '부피' }, { en: 'side', ko: '변' },
+    { en: 'vertex', ko: '꼭짓점' }, { en: 'hypotenuse', ko: '빗변' }, { en: 'right triangle', ko: '직각삼각형' }, { en: 'acute triangle', ko: '예각삼각형' },
+    { en: 'obtuse triangle', ko: '둔각삼각형' }, { en: 'equilateral triangle', ko: '정삼각형' }, { en: 'isosceles triangle', ko: '이등변삼각형' }, { en: 'square', ko: '정사각형' },
+    { en: 'rectangle', ko: '직사각형' }, { en: 'quadrilateral', ko: '사각형' }, { en: 'parallelogram', ko: '평행사변형' }, { en: 'pyramid', ko: '사각뿔' },
+    { en: 'cube', ko: '정육면체' }, { en: 'tetrahedron', ko: '사면체' }, { en: 'domain', ko: '정의역' }, { en: 'range', ko: '치역' },
+    { en: 'asymptote', ko: '점근선' }, { en: 'round', ko: '반올림' }, { en: 'reciprocal', ko: '역수' }, { en: 'sign', ko: '부호' },
+    { en: 'local(relative) maximum', ko: '극대' }, { en: 'local(relative) minimum', ko: '극소' }, { en: 'global(absolute) maximum', ko: '최대' }, { en: 'global(absolute) minimum', ko: '최소' },
+    { en: 'base', ko: '밑면' }, { en: 'cross-section', ko: '단면' }, { en: 'coefficient', ko: '계수' }, { en: 'exponent', ko: '지수' },
+    { en: 'slope', ko: '기울기' }, { en: 'induction', ko: '귀납법' }
   ],
   2: [
     { en: 'Mass', ko: '질량' }, { en: 'Weight', ko: '무게' }, { en: 'Force', ko: '힘' }, { en: 'Velocity', ko: '속도' },
@@ -47,19 +47,19 @@ export const wordsData = {
     { en: 'Ground', ko: '접지' }, { en: 'Terminal', ko: '단자' }
   ],
   4: [
-    { en: 'Signal', ko: '신호' }, { en: 'System', ko: '시스템' }, { en: 'Continuous', ko: '연속적인' }, { en: 'Discrete', ko: '이산적인' },
-    { en: 'Analog', ko: '아날로그' }, { en: 'Digital', ko: '디지털' }, { en: 'Linear', ko: '선형' }, { en: 'Time-Invariant', ko: '시불변' },
-    { en: 'LTI (Linear Time-Invariant)', ko: '선형 시불변' }, { en: 'Convolution', ko: '합성곱 (컨볼루션)' }, { en: 'Impulse', ko: '임펄스 (충격파)' }, { en: 'Step Function', ko: '계단 함수' },
-    { en: 'Ramp Function', ko: '램프 함수' }, { en: 'Periodic', ko: '주기적인' }, { en: 'Aperiodic', ko: '비주기적인' }, { en: 'Frequency', ko: '주파수' },
-    { en: 'Spectrum', ko: '스펙트럼' }, { en: 'Fourier Series', ko: '푸리에 급수' }, { en: 'Fourier Transform', ko: '푸리에 변환' }, { en: 'Laplace Transform', ko: '라플라스 변환' },
-    { en: 'Z-Transform', ko: 'Z-변환' }, { en: 'Transfer Function', ko: '전달 함수' }, { en: 'Pole', ko: '극점' }, { en: 'Zero', ko: '영점' },
-    { en: 'Stability', ko: '안정성' }, { en: 'Causality', ko: '인과성' }, { en: 'Sampling', ko: '샘플링 (표본화)' }, { en: 'Nyquist Rate', ko: '나이퀴스트 율' },
-    { en: 'Aliasing', ko: '에일리어싱' }, { en: 'Quantization', ko: '양자화' }, { en: 'Modulation', ko: '변조' }, { en: 'Demodulation', ko: '복조' },
-    { en: 'Carrier', ko: '반송파' }, { en: 'Bandwidth', ko: '대역폭' }, { en: 'Filter', ko: '필터' }, { en: 'Low-pass', ko: '저역 통과' },
-    { en: 'High-pass', ko: '고역 통과' }, { en: 'Band-pass', ko: '대역 통과' }, { en: 'Band-stop', ko: '대역 저지' }, { en: 'Phase', ko: '위상' },
-    { en: 'Magnitude', ko: '크기' }, { en: 'Response', ko: '응답' }, { en: 'Impulse Response', ko: '임펄스 응답' }, { en: 'Frequency Response', ko: '주파수 응답' },
-    { en: 'Bode Plot', ko: '보데 선도' }, { en: 'Feedback', ko: '피드백 (되먹임)' }, { en: 'Noise', ko: '노이즈 (잡음)' }, { en: 'Distortion', ko: '왜곡' },
-    { en: 'Correlation', ko: '상관관계' }, { en: 'Autocorrelation', ko: '자기상관' }
+    { en: 'Electric Field', ko: '전기장' }, { en: 'Magnetic Field', ko: '자기장' }, { en: 'Charge', ko: '전하' }, { en: 'Current', ko: '전류' },
+    { en: 'Voltage', ko: '전압' }, { en: 'Resistance', ko: '저항' }, { en: 'Capacitance', ko: '전기용량' }, { en: 'Inductance', ko: '인덕턴스' },
+    { en: 'Flux', ko: '선속 (플럭스)' }, { en: 'Permittivity', ko: '유전율' }, { en: 'Permeability', ko: '투자율' }, { en: 'Coulomb', ko: '쿨롱 (전하의 단위)' },
+    { en: 'Ampere', ko: '암페어 (전류의 단위)' }, { en: 'Volt', ko: '볼트 (전압의 단위)' }, { en: 'Ohm', ko: '옴 (저항의 단위)' }, { en: 'Farad', ko: '패럿 (전기용량의 단위)' },
+    { en: 'Henry', ko: '헨리 (인덕턴스의 단위)' }, { en: 'Tesla', ko: '테슬라 (자기장의 단위)' }, { en: 'Weber', ko: '웨버 (자기선속의 단위)' }, { en: 'Conductor', ko: '도체' },
+    { en: 'Insulator', ko: '절연체 (부도체)' }, { en: 'Semiconductor', ko: '반도체' }, { en: 'Dielectric', ko: '유전체' }, { en: 'Polarization', ko: '분극 (편광)' },
+    { en: 'Magnetization', ko: '자화' }, { en: 'Dipole', ko: '쌍극자' }, { en: 'Monopole', ko: '단극자' }, { en: 'Electromagnetic Wave', ko: '전자기파' },
+    { en: 'Wavelength', ko: '파장' }, { en: 'Frequency', ko: '주파수' }, { en: 'Amplitude', ko: '진폭' }, { en: 'Phase', ko: '위상' },
+    { en: 'Impedance', ko: '임피던스' }, { en: 'Admittance', ko: '어드미턴스' }, { en: 'Reactance', ko: '리액턴스' }, { en: 'Conductance', ko: '컨덕턴스' },
+    { en: 'Susceptance', ko: '서셉턴스' }, { en: 'Maxwell\'s Equations', ko: '맥스웰 방정식' }, { en: 'Gauss\'s Law', ko: '가우스의 법칙' }, { en: 'Ampere\'s Law', ko: '암페어의 법칙' },
+    { en: 'Faraday\'s Law', ko: '패러데이의 법칙' }, { en: 'Lenz\'s Law', ko: '렌츠의 법칙' }, { en: 'Lorentz Force', ko: '로렌츠 힘' }, { en: 'Biot-Savart Law', ko: '비오-사바르 법칙' },
+    { en: 'Electromotive Force (EMF)', ko: '기전력' }, { en: 'Magnetomotive Force (MMF)', ko: '기자력' }, { en: 'Reluctance', ko: '자기 저항' }, { en: 'Eddy Current', ko: '와전류 (맴돌이 전류)' },
+    { en: 'Hysteresis', ko: '이력 현상' }, { en: 'Transformer', ko: '변압기' }
   ],
   5: [
     { en: 'Algorithm', ko: '알고리즘' }, { en: 'Complexity', ko: '복잡도' }, { en: 'Database', ko: '데이터베이스' }, { en: 'Query', ko: '질의' },
@@ -75,20 +75,5 @@ export const wordsData = {
     { en: 'Dataset', ko: '데이터셋' }, { en: 'Feature', ko: '특징' }, { en: 'Label', ko: '레이블 (정답)' }, { en: 'Overfitting', ko: '과적합' },
     { en: 'Underfitting', ko: '과소적합' }, { en: 'Validation', ko: '검증' }, { en: 'Testing', ko: '테스트' }, { en: 'Deployment', ko: '배포' },
     { en: 'Cloud', ko: '클라우드' }, { en: 'Container', ko: '컨테이너' }
-  ],
-  6: [
-    { en: 'Abstract', ko: '초록' }, { en: 'Introduction', ko: '서론' }, { en: 'Methodology', ko: '연구 방법' }, { en: 'Experiment', ko: '실험' },
-    { en: 'Result', ko: '결과' }, { en: 'Discussion', ko: '고찰 (논의)' }, { en: 'Conclusion', ko: '결론' }, { en: 'Reference', ko: '참고문헌' },
-    { en: 'Hypothesis', ko: '가설' }, { en: 'Propose', ko: '제안하다' }, { en: 'Investigate', ko: '조사하다' }, { en: 'Demonstrate', ko: '입증하다' },
-    { en: 'Evaluate', ko: '평가하다' }, { en: 'Compare', ko: '비교하다' }, { en: 'Analyze', ko: '분석하다' }, { en: 'Measure', ko: '측정하다' },
-    { en: 'Observe', ko: '관찰하다' }, { en: 'Derive', ko: '도출하다' }, { en: 'Implement', ko: '구현하다' }, { en: 'Validate', ko: '검증하다' },
-    { en: 'Verify', ko: '확인하다' }, { en: 'Significant', ko: '유의미한' }, { en: 'Robust', ko: '강건한 (신뢰할 수 있는)' }, { en: 'State-of-the-art', ko: '최첨단의' },
-    { en: 'Novel', ko: '새로운 (독창적인)' }, { en: 'Conventional', ko: '전통적인' }, { en: 'Preliminary', ko: '예비의' }, { en: 'Quantitative', ko: '정량적인' },
-    { en: 'Qualitative', ko: '정성적인' }, { en: 'Empirical', ko: '경험적인 (실증적인)' }, { en: 'Theoretical', ko: '이론적인' }, { en: 'Parameter', ko: '매개변수' },
-    { en: 'Variable', ko: '변수' }, { en: 'Threshold', ko: '임계값' }, { en: 'Benchmark', ko: '벤치마크 (기준점)' }, { en: 'Baseline', ko: '기준선 (베이스라인)' },
-    { en: 'Metric', ko: '지표' }, { en: 'Accuracy', ko: '정확도' }, { en: 'Precision', ko: '정밀도' }, { en: 'Recall', ko: '재현율' },
-    { en: 'Assumption', ko: '가정' }, { en: 'Limitation', ko: '한계점' }, { en: 'Contribution', ko: '기여' }, { en: 'Future work', ko: '향후 연구 과제' },
-    { en: 'Accordingly', ko: '따라서' }, { en: 'Furthermore', ko: '더욱이' }, { en: 'Conversely', ko: '반대로' }, { en: 'Nevertheless', ko: '그럼에도 불구하고' },
-    { en: 'Respectively', ko: '각각' }, { en: 'Via', ko: '~을 통하여' }
   ]
 };
