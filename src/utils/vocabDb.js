@@ -1,10 +1,10 @@
 import { wordsData as initialWordsData } from '../data/wordsData';
 
-const CATEGORIES_KEY = 'vocab_categories';
-const WORDS_KEY = 'vocab_words';
-const PROGRESS_KEY = 'vocab_progress';
-const LAST_INDEX_KEY = 'vocab_last_index';
-const RECENT_FOLDERS_KEY = 'vocab_recent_folders';
+const CATEGORIES_KEY = 'vocab_categories_v2';
+const WORDS_KEY = 'vocab_words_v2';
+const PROGRESS_KEY = 'vocab_progress_v2';
+const LAST_INDEX_KEY = 'vocab_last_index_v2';
+const RECENT_FOLDERS_KEY = 'vocab_recent_folders_v2';
 
 const defaultCategories = [
   {
@@ -120,13 +120,13 @@ export const markWordLearned = (folderId, wordIndex) => {
 };
 
 export const addPoints = (points) => {
-  const currentPoints = Number(localStorage.getItem('user_points') || 0);
-  localStorage.setItem('user_points', currentPoints + points);
+  const currentPoints = Number(localStorage.getItem('user_points_v2') || 0);
+  localStorage.setItem('user_points_v2', currentPoints + points);
   return currentPoints + points;
 };
 
 export const getUserStats = () => {
-  const totalPoints = Number(localStorage.getItem('user_points') || 0);
+  const totalPoints = Number(localStorage.getItem('user_points_v2') || 0);
   let level = 1;
   let pointsNeededForNext = 50;
   let currentLevelStartPoints = 0;
