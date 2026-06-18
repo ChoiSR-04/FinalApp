@@ -18,10 +18,10 @@ const weeklyData = [
 const MyPage = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [userInfo, setUserInfo] = useState({
-    name: '김철수',
-    major: '전자공학과',
-    grade: '3학년',
-    email: 'kcs***@postech.ac.kr'
+    name: '최서랑',
+    major: '전기공학과',
+    grade: '1학년',
+    email: 'seorangchoi11@hanyang.ac.kr'
   });
   const [stats, setStats] = useState({ level: 1, totalPoints: 0, pointsInCurrentLevel: 0, pointsNeededForNext: 50 });
   const [recentFolders, setRecentFolders] = useState([]);

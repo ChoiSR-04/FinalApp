@@ -58,9 +58,9 @@ export const initVocabDb = () => {
   if (!localStorage.getItem(WORDS_KEY)) {
     localStorage.setItem(WORDS_KEY, JSON.stringify(initialWordsData));
   } else {
-    // Sync default words (folders 1-4) from initialWordsData
+    // Sync default words (folders 1-5) from initialWordsData
     const wordsMap = JSON.parse(localStorage.getItem(WORDS_KEY));
-    [1, 2, 3, 4].forEach(id => {
+    [1, 2, 3, 4, 5].forEach(id => {
       if (initialWordsData[id]) {
         wordsMap[id] = initialWordsData[id];
       }

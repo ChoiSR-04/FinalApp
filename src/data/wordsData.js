@@ -62,18 +62,9 @@ export const wordsData = {
     { en: 'Hysteresis', ko: '이력 현상' }, { en: 'Transformer', ko: '변압기' }
   ],
   5: [
-    { en: 'Algorithm', ko: '알고리즘' }, { en: 'Complexity', ko: '복잡도' }, { en: 'Database', ko: '데이터베이스' }, { en: 'Query', ko: '질의' },
-    { en: 'Architecture', ko: '아키텍처' }, { en: 'Protocol', ko: '프로토콜' }, { en: 'Network', ko: '네트워크' }, { en: 'Router', ko: '라우터' },
-    { en: 'Server', ko: '서버' }, { en: 'Client', ko: '클라이언트' }, { en: 'Encryption', ko: '암호화' }, { en: 'Decryption', ko: '복호화' },
-    { en: 'Authentication', ko: '인증' }, { en: 'Authorization', ko: '인가 (권한 부여)' }, { en: 'Framework', ko: '프레임워크' }, { en: 'Library', ko: '라이브러리' },
-    { en: 'Compiler', ko: '컴파일러' }, { en: 'Interpreter', ko: '인터프리터' }, { en: 'Variable', ko: '변수' }, { en: 'Pointer', ko: '포인터' },
-    { en: 'Array', ko: '배열' }, { en: 'List', ko: '리스트' }, { en: 'Stack', ko: '스택' }, { en: 'Queue', ko: '큐' },
-    { en: 'Tree', ko: '트리' }, { en: 'Graph', ko: '그래프' }, { en: 'Node', ko: '노드' }, { en: 'Edge', ko: '간선' },
-    { en: 'Iteration', ko: '반복' }, { en: 'Recursion', ko: '재귀' }, { en: 'Sorting', ko: '정렬' }, { en: 'Searching', ko: '검색' },
-    { en: 'Optimization', ko: '최적화' }, { en: 'Heuristic', ko: '휴리스틱' }, { en: 'Machine Learning', ko: '기계 학습' }, { en: 'Artificial Intelligence', ko: '인공지능' },
-    { en: 'Neural Network', ko: '신경망' }, { en: 'Training', ko: '학습' }, { en: 'Inference', ko: '추론' }, { en: 'Model', ko: '모델' },
-    { en: 'Dataset', ko: '데이터셋' }, { en: 'Feature', ko: '특징' }, { en: 'Label', ko: '레이블 (정답)' }, { en: 'Overfitting', ko: '과적합' },
-    { en: 'Underfitting', ko: '과소적합' }, { en: 'Validation', ko: '검증' }, { en: 'Testing', ko: '테스트' }, { en: 'Deployment', ko: '배포' },
-    { en: 'Cloud', ko: '클라우드' }, { en: 'Container', ko: '컨테이너' }
+    { en: 'Semiconductor', ko: '반도체' }, { en: 'Plasma', ko: '플라즈마' }, { en: 'Wafer', ko: '웨이퍼' }, { en: 'Doping', ko: '도핑' },
+    { en: 'Silicon', ko: '실리콘' }, { en: 'Etching', ko: '에칭 (식각)' }, { en: 'Deposition', ko: '증착' }, { en: 'Transistor', ko: '트랜지스터' },
+    { en: 'Ion Implantation', ko: '이온 주입' }, { en: 'Photolithography', ko: '포토리소그래피 (노광)' }, { en: 'Electron', ko: '전자' }, { en: 'Hole', ko: '양공 (정공)' },
+    { en: 'Substrate', ko: '기판' }, { en: 'Carrier', ko: '캐리어 (전하 운반자)' }, { en: 'Breakdown', ko: '절연 파괴' }
   ]
 };

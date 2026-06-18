@@ -6,7 +6,7 @@ import './Quiz.css';
 
 const Quiz = () => {
   const navigate = useNavigate();
-  const [timeLeft, setTimeLeft] = useState(15);
+  const [timeLeft, setTimeLeft] = useState(10);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [isFinished, setIsFinished] = useState(false);
@@ -106,7 +106,7 @@ const Quiz = () => {
       if (currentQuestionIndex < questions.length - 1) {
         setCurrentQuestionIndex(prev => prev + 1);
         setSelectedOption(null);
-        setTimeLeft(15);
+        setTimeLeft(10);
       } else {
         finishQuiz();
       }
@@ -123,7 +123,7 @@ const Quiz = () => {
           if (currentQuestionIndex < questions.length - 1) {
             setCurrentQuestionIndex(prev => prev + 1);
             setSelectedOption(null);
-            setTimeLeft(15);
+            setTimeLeft(10);
           } else {
             finishQuiz();
           }
