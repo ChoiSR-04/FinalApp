@@ -5,16 +5,20 @@ import './Home.css';
 const Home = () => {
   const navigate = useNavigate();
 
+  const streakDays = 1; // 임시 하드코딩 값
+  const robotImage = streakDays > 10 ? "/smiling_robot.png" : "/sad_robot.png";
+  const robotAlt = streakDays > 10 ? "Smiling Robot" : "Sad Robot";
+
   return (
     <div className="page-container home-page">
       <Header title="공대 영단어 마스터" rightIcon="bell" />
       
       <div className="character-section">
         <div className="character-bg-grid"></div>
-        <img src="/sad_robot.png" alt="Sad Robot" className="robot-image" />
+        <img src={robotImage} alt={robotAlt} className="robot-image" />
         
         <div className="streak-badge glass-panel">
-          <span className="fire-icon">🔥</span> 연속 학습: 12일째
+          <span className="fire-icon">🔥</span> 연속 학습: {streakDays}일째
         </div>
       </div>
 

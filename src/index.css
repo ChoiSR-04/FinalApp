@@ -62,8 +62,14 @@ body {
   overflow-y: auto;
 }
 
-.page-container::-webkit-scrollbar {
-  display: none;
+/* Hide scrollbars completely while keeping scroll functionality */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
 }
 
 .page-title {

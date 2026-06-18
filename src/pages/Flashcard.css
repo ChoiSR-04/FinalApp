@@ -87,11 +87,21 @@
   word-break: break-word;
 }
 
-.click-hint {
-  font-size: 0.85rem;
-  color: #94a3b8;
+.click-hints {
   position: absolute;
   bottom: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-sizing: border-box;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.hint-center {
+  flex-grow: 1;
+  text-align: center;
 }
 
 .finished-container {

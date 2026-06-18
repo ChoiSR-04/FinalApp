@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Header from '../components/Header';
-import { getCategories, getWordsByFolderId, getAllWords } from '../utils/vocabDb';
+import { getCategories, getWordsByFolderId, getAllWords, addPoints } from '../utils/vocabDb';
 import './GameRoom.css';
 
 const GameRoom = () => {
@@ -45,8 +45,9 @@ const GameRoom = () => {
     if (lives <= 0 && !isGameOverRef.current) {
       setIsGameOver(true);
       isGameOverRef.current = true;
+      if (score > 0) addPoints(score);
     }
-  }, [lives]);
+  }, [lives, score]);
 
   useEffect(() => {
     if (!gameStarted) return; // Removed isGameOver guard to keep rendering fireworks after win
@@ -164,6 +165,9 @@ const GameRoom = () => {
 
       // Check if player cleared the level (no remaining words AND no active words falling)
       if (remainingWordsRef.current.length === 0 && activeWordsRef.current.length === 0) {
+        if (!isClearedRef.current) {
+          if (scoreRef.current > 0) addPoints(scoreRef.current);
+        }
         setIsCleared(true);
         isClearedRef.current = true;
         setIsGameOver(true);

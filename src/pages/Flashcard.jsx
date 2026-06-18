@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
-import { getWordsByFolderId } from '../utils/vocabDb';
+import { getWordsByFolderId, markWordLearned, getLastStudiedIndex, saveLastStudiedIndex, updateRecentFolder } from '../utils/vocabDb';
 import './Flashcard.css';
 
 const Flashcard = () => {
@@ -9,9 +9,16 @@ const Flashcard = () => {
   const navigate = useNavigate();
   const words = getWordsByFolderId(id);
   
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const initialIndex = getLastStudiedIndex(id);
+  const [currentIndex, setCurrentIndex] = useState(initialIndex >= words.length ? 0 : initialIndex);
   const [showMeaning, setShowMeaning] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
+
+  useEffect(() => {
+    if (words.length > 0) {
+      updateRecentFolder(id);
+    }
+  }, [id, words.length]);
 
   // If invalid ID
   if (words.length === 0) {
@@ -23,25 +30,63 @@ const Flashcard = () => {
     );
   }
 
-  const handleCardClick = () => {
-    if (!showMeaning) {
-      // First click: show meaning
-      setShowMeaning(true);
+  const handleNext = () => {
+    if (currentIndex < words.length - 1) {
+      if (showMeaning) {
+        setShowMeaning(false);
+        setTimeout(() => {
+          const nextIndex = currentIndex + 1;
+          setCurrentIndex(nextIndex);
+          saveLastStudiedIndex(id, nextIndex);
+        }, 300);
+      } else {
+        const nextIndex = currentIndex + 1;
+        setCurrentIndex(nextIndex);
+        saveLastStudiedIndex(id, nextIndex);
+      }
     } else {
-      // Second click: flip back first, then change word after card is edge-on
-      setShowMeaning(false);
-      setTimeout(() => {
-        if (currentIndex < words.length - 1) {
-          setCurrentIndex(prev => prev + 1);
+      setIsFinished(true);
+    }
+  };
+
+  const handleCardClick = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const width = rect.width;
+
+    if (x < width * 0.3) {
+      // Left 30%: Previous Card
+      if (currentIndex > 0) {
+        if (showMeaning) {
+          setShowMeaning(false);
+          setTimeout(() => {
+            const nextIndex = currentIndex - 1;
+            setCurrentIndex(nextIndex);
+            saveLastStudiedIndex(id, nextIndex);
+          }, 300);
         } else {
-          setIsFinished(true);
+          const nextIndex = currentIndex - 1;
+          setCurrentIndex(nextIndex);
+          saveLastStudiedIndex(id, nextIndex);
         }
-      }, 300); // 0.3s = halfway through 0.6s flip (card is at 90°, invisible)
+      }
+    } else if (x > width * 0.7) {
+      // Right 30%: Next Card
+      handleNext();
+    } else {
+      // Center 40%: Flip or Go Next
+      if (!showMeaning) {
+        setShowMeaning(true);
+        markWordLearned(id, currentIndex);
+      } else {
+        handleNext();
+      }
     }
   };
 
   const handleRestart = () => {
     setCurrentIndex(0);
+    saveLastStudiedIndex(id, 0);
     setShowMeaning(false);
     setIsFinished(false);
   };
@@ -63,11 +108,9 @@ const Flashcard = () => {
             <div className="flashcard-inner">
               <div className="flashcard-front">
                 <h2 className="word-en">{words[currentIndex].en}</h2>
-                <p className="click-hint">클릭해서 뜻 확인</p>
               </div>
               <div className="flashcard-back">
                 <h2 className="word-ko">{words[currentIndex].ko}</h2>
-                <p className="click-hint">클릭해서 다음 단어</p>
               </div>
             </div>
           </div>
